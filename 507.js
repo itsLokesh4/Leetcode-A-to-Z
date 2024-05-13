@@ -1,53 +1,38 @@
-// 2859. Sum of Values at Indices With K Set Bits
+// 507. Perfect Number
 
-// You are given a 0-indexed integer array nums and an integer k.
 
-// Return an integer that denotes the sum of elements in nums whose corresponding indices have exactly k set bits in their binary representation.
+// A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself. A divisor of an integer x is an integer that can divide x evenly.
 
-// The set bits in an integer are the 1's present when it is written in binary.
-
-// For example, the binary representation of 21 is 10101, which has 3 set bits.
+// Given an integer n, return true if n is a perfect number, otherwise return false.
 
 
 
 // Example 1:
 
-// Input: nums = [5,10,1,5,2], k = 1
-// Output: 13
-// Explanation: The binary representation of the indices are: 
-// 0 = 0002
-// 1 = 0012
-// 2 = 0102
-// 3 = 0112
-// 4 = 1002 
-// Indices 1, 2, and 4 have k = 1 set bits in their binary representation.
-// Hence, the answer is nums[1] + nums[2] + nums[4] = 13.
+// Input: num = 28
+// Output: true
+// Explanation: 28 = 1 + 2 + 4 + 7 + 14
+// 1, 2, 4, 7, and 14 are all divisors of 28.
 // Example 2:
 
-// Input: nums = [4,3,2,1], k = 2
-// Output: 1
-// Explanation: The binary representation of the indices are:
-// 0 = 002
-// 1 = 012
-// 2 = 102
-// 3 = 112
-// Only index 3 has k = 2 set bits in its binary representation.
-// Hence, the answer is nums[3] = 1.
+// Input: num = 7
+// Output: false
 
 
 
-var sumIndicesWithKSetBits = function(nums, k) {
 
-    let sum = 0;
-    for(let i=0;i<nums.length;i++){
-        let s = i.toString(2);
-        let count = 0;
-        for(let char of s ){
-            if(char == 1) count ++
-        }
-        if(count === k){
-            sum = sum + nums[i];
-        }
+
+var checkPerfectNumber = function(num) {
+    if(num == 1) {return false }
+ 
+    let sum = 1 ;
+ 
+    for(let i=2 ;i< num ;i++){
+     if(num % i ==0 ){
+         sum = sum + i
+     }
     }
-    return sum ;
-};
+ 
+    return num == sum 
+ };
+ 
